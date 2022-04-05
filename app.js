@@ -3,6 +3,7 @@ import express from "express";
 import notFoundMiddleware from "./middleware/not-found.js";
 import errorMiddleware from "./middleware/error-handler.js";
 import connectDB from "./db/connect.js";
+import productsRouter from "./routes/products.js";
 // async errors
 dotenv.config();
 
@@ -10,11 +11,13 @@ const app = express();
 
 app.use(express.json());
 
-// router
+// routes
 
 app.get("/", (req, res) => {
   res.send("<h1>Store API </h1><a href='/api/v1/products'>products</a>");
 });
+
+app.use("/api/v1/products", productsRouter);
 
 // products route
 
